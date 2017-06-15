@@ -1,3 +1,4 @@
+
 namespace productsapp.Services {
 
   export class ProductService {
@@ -5,6 +6,10 @@ namespace productsapp.Services {
 
       public list() {
         return this.ProductResource.query()
+      }
+
+      public save(product) {
+        return this.ProductResource.save(product).$promise;
       }
 
       constructor($resource:ng.resource.IResourceService) {

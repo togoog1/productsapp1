@@ -9,6 +9,9 @@ var productsapp;
             ProductService.prototype.list = function () {
                 return this.ProductResource.query();
             };
+            ProductService.prototype.save = function (product) {
+                return this.ProductResource.save(product).$promise;
+            };
             return ProductService;
         }());
         Services.ProductService = ProductService;

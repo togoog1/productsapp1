@@ -1,11 +1,31 @@
+
 namespace productsapp.Controllers {
 
     export class HomeController {
         public products;
+        public product;
 
-        constructor(productService:productsapp.Services.ProductService) {
+        public save() {
+          this.productService.save(this.product).then(() => {
+            this.products = this.productService.list();
+            this.product = null;
+          });
+        }
+
+        constructor(private productService:productsapp.Services.ProductService) {
           this.products = productService.list();
         }
+    }
+
+      constructor(
+        private productService:productsapp.Services.ProductService,
+        private $state:ng.ui.IStateService,
+        private $stateParams:ng.ui.IStateParamsService
+      ) {
+        let productId = $stateParams['id'];
+        this.product = productService.get(productId);
+      }
+
     }
 
 
